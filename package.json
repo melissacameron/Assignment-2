@@ -1,7 +1,7 @@
 {
   "name": "Boilerplate",
   "version": "0.0.1",
-  "author": "Chu Shao",
+  "author": "Melissa Cameron",
   "scripts": {
     "start": "node app.js"
   },
