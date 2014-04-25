@@ -1,7 +1,9 @@
 html {
-	/*background: url(../img/bg.jpg);*/
-	background:#f9f9f9;
+	/*background: url(http://cdn.tripwiremagazine.com/wp-content/uploads/2013/01/Blue-Crystal-minimalist-wallpaper.jpg);
+	/*background:#f9f9f9;*/
 	
+	background:url(http://cache.gawker.com/assets/images/lifehacker/2011/06/vintage-rainbow-color-badge.png);
+	background-size: cover;
 }
 
 body {
@@ -26,6 +28,7 @@ body {
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
 	border:6px solid rgb(51,51,51);
+	background-color: rgba(255,255,255,0.9);
 }
 /*
 .inner-wrapper {
