@@ -93,7 +93,7 @@ app.get('/auth/facebook', function(req, res) {
 	if (!req.query.code) {
 		var authUrl = graph.getOauthUrl({
 			'client_id': process.env.facebook_client_id,
-			'redirect_uri': 'http://localhost:3000/auth/facebook',
+			'redirect_uri': 'http://mcc-a2.herokuapp.com/auth/facebook',
 			'scope': 'user_about_me'//you want to update scope to what you want in your app
 		});
 
