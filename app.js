@@ -84,6 +84,10 @@ app.get('/', function(req,res) {
 	res.render("index");
 });
 
+app.get('/discover', function(req,res) { 
+	res.render("discover");
+});
+
 //fbgraph authentication
 app.get('/auth/facebook', function(req, res) {
 	if (!req.query.code) {
@@ -106,7 +110,7 @@ app.get('/auth/facebook', function(req, res) {
 		'client_secret': process.env.facebook_client_secret,
 		'code': req.query.code
 	}, function( err, facebookRes) {
-		res.redirect('/UserHasLoggedIn');
+		res.redirect('/discover');
 	});
 });
 
