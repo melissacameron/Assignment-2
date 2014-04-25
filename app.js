@@ -12,22 +12,22 @@ dotenv.load();
 var graph = require('fbgraph');
 
 //twit
-var twit = require('twit');
+// var twit = require('twit');
 
 //twitter oauth
 var passport = require('passport');
 var util = require('util');
-var passportTwitterStrategy = require('passport-twitter').Strategy;
+// var passportTwitterStrategy = require('passport-twitter').Strategy;
 
 //have two blank strings for access token and access secret
 var accessToken = "";
 var accessSecret = "";
-var twitterOauth = {
-	consumer_key: process.env.twitter_client_id,
-	consumer_secret: process.env.twitter_client_secret,
-	access_token: accessToken,
-	access_token_secret: accessSecret
-};
+// var twitterOauth = {
+// 	consumer_key: process.env.twitter_client_id,
+// 	consumer_secret: process.env.twitter_client_secret,
+// 	access_token: accessToken,
+// 	access_token_secret: accessSecret
+// };
 
 //Set up passport session set up.
 //This allows persistant login sessions so the user doesn't need to keep logging in everytime
@@ -48,21 +48,21 @@ function ensureAuthenticated(req, res, next) {
 
 
 //Use TwitterStrategy with passport
-passport.use(new passportTwitterStrategy({
-	consumerKey: process.env.twitter_client_id,
-	consumerSecret: process.env.twitter_client_secret,
-	callbackURL: "http://localhost:3000/auth/twitter/callback"
-}, function (token, tokenSecret, profile, done) {
-	//setting up access token
-	accessToken = token;
-	accessSecret = tokenSecret;
-	twitterOauth.access_token = token;
-	twitterOauth.access_token_secret = tokenSecret;
-	//Continuing on
-	process.nextTick(function() {
-		return done(null, profile);
-	});
-}));
+// passport.use(new passportTwitterStrategy({
+// 	consumerKey: process.env.twitter_client_id,
+// 	consumerSecret: process.env.twitter_client_secret,
+// 	callbackURL: "http://localhost:3000/auth/twitter/callback"
+// }, function (token, tokenSecret, profile, done) {
+// 	//setting up access token
+// 	accessToken = token;
+// 	accessSecret = tokenSecret;
+// 	twitterOauth.access_token = token;
+// 	twitterOauth.access_token_secret = tokenSecret;
+// 	//Continuing on
+// 	process.nextTick(function() {
+// 		return done(null, profile);
+// 	});
+// }));
 
 //Configures the Template engine
 app.engine('handlebars', handlebars());
@@ -125,27 +125,27 @@ app.get('/UserHasLoggedIn', function(req, res) {
 
 //twitter authentication Oauth setup
 //this will set up twitter oauth for any user not just one
-app.get('/auth/twitter', passport.authenticate('twitter'), function(req, res) {
-	//nothing here because callback redirects to /auth/twitter/callback
-});
+// app.get('/auth/twitter', passport.authenticate('twitter'), function(req, res) {
+// 	//nothing here because callback redirects to /auth/twitter/callback
+// });
 
 //callback. authenticates again and then goes to twitter
-app.get('/auth/twitter/callback', 
-	passport.authenticate('twitter', { failureRedirect: '/' }),
-	function(req, res) {
-		res.redirect('/twitter');
-	});
+// app.get('/auth/twitter/callback', 
+// 	passport.authenticate('twitter', { failureRedirect: '/' }),
+// 	function(req, res) {
+// 		res.redirect('/twitter');
+// 	});
 
 
-app.get('/twitter', ensureAuthenticated, function(req, res) {
-	//I can use twitterOauth as previously it's an array set up with the correcet information
-	var T = new twit(twitterOauth); 
-	T.get('/friends/list', function (err, reply) {
-		console.log(err); //If there is an error this will return a value
-		data = { twitterData: reply };
-		res.render('twitter', data);
-	});
-});
+// app.get('/twitter', ensureAuthenticated, function(req, res) {
+// 	//I can use twitterOauth as previously it's an array set up with the correcet information
+// 	var T = new twit(twitterOauth); 
+// 	T.get('/friends/list', function (err, reply) {
+// 		console.log(err); //If there is an error this will return a value
+// 		data = { twitterData: reply };
+// 		res.render('twitter', data);
+// 	});
+// });
 
 //set environment ports and start application
 app.set('port', process.env.PORT || 3000);
