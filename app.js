@@ -106,7 +106,7 @@ app.get('/auth/facebook', function(req, res) {
 	}
 	graph.authorize({
 		'client_id': process.env.facebook_client_id,
-		'redirect_uri': 'http://localhost:3000/auth/facebook',
+		'redirect_uri': 'http://mcc-a2.herokuapp.com/auth/facebook',
 		'client_secret': process.env.facebook_client_secret,
 		'code': req.query.code
 	}, function( err, facebookRes) {
